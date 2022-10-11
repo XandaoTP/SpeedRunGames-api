@@ -11,9 +11,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      avaliable: {
-        type: Sequelize.BOOLEAN
-      },
       plataform: {
         type: Sequelize.STRING
       },

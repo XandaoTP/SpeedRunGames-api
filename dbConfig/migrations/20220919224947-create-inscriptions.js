@@ -14,7 +14,7 @@ module.exports = {
       data: {
         type: Sequelize.DATEONLY
       },
-      inscription_id: {
+      inscriptions_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references:{

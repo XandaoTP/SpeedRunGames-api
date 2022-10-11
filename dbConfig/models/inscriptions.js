@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       inscriptions.hasMany(models.championships, {
-        foreignKey: 'inscription_id'
+        foreignKey: 'user_id'
       })
       inscriptions.belongsTo(models.games, {
-        foreignKey: 'inscription_id'
+        foreignKey: 'user_id'
       })
     }
   }

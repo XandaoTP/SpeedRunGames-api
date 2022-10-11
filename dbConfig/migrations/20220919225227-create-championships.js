@@ -22,7 +22,7 @@ module.exports = {
           key: 'id'
         }
       },
-        inscription_id: {
+        user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references:{
