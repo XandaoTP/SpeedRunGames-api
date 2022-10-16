@@ -14,13 +14,22 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'user_id'
       })
       inscriptions.belongsTo(models.games, {
-        foreignKey: 'user_id'
+        foreignKey: 'inscriptions_id'
       })
     }
   }
   inscriptions.init({
-    nome: DataTypes.STRING,
-    data: DataTypes.DATEONLY
+    name: DataTypes.STRING,
+    email: { 
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: {
+          args: true,
+          msg: "email Inválido"
+        }
+      }
+    },
+    inscriptions_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'inscriptions',

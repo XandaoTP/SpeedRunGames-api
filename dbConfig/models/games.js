@@ -20,11 +20,28 @@ module.exports = (sequelize, DataTypes) => {
   }
   games.init({
     name: DataTypes.STRING,
-    avaliable: DataTypes.BOOLEAN,
+    ativo: DataTypes.BOOLEAN,
     plataform: DataTypes.STRING
   }, { 
     sequelize,
     modelName: 'games',
+    paranoid: true,
+    defaultScope: {
+      where: {
+      }
+    },
+    scopes: {
+      disableGames: {
+        where:{
+          ativo:false
+        }
+      },
+      plataform: {
+        where: {
+          plataform: 'N64'
+        }
+      }
+    }
   });
   return games;
 };

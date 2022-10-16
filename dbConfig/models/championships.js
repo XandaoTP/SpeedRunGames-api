@@ -22,12 +22,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   championships.init({
-    nome: DataTypes.STRING,
+    name: DataTypes.STRING,
     data_inicio: DataTypes.DATEONLY,
-    qty: DataTypes.NUMBER
+    user_id: DataTypes.NUMBER,
+    championships_id: DataTypes.NUMBER
   }, {
     sequelize,
     modelName: 'championships',
+    paranoid: true
   });
   return championships;
 };

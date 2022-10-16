@@ -14,6 +14,9 @@ module.exports = {
       plataform: {
         type: Sequelize.STRING
       },
+      ativo: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

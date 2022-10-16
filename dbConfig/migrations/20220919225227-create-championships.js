@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nome: {
+      name: {
         type: Sequelize.STRING
       },
       data_inicio: {
@@ -20,8 +20,8 @@ module.exports = {
         references:{
           model: 'games',
           key: 'id'
-        }
-      },
+        }}
+        ,
         user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
