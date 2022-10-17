@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   }, { 
     sequelize,
     modelName: 'games',
-    paranoid: true,
+    paranoid: false,
     defaultScope: {
       where: {
       }

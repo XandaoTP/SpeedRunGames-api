@@ -20,16 +20,16 @@ module.exports = (sequelize, DataTypes) => {
   }
   inscriptions.init({
     name: DataTypes.STRING,
+    inscriptions_id: DataTypes.INTEGER,
     email: { 
       type: DataTypes.STRING,
-      validate: {
-        isEmail: {
-          args: true,
-          msg: "email Inválido"
-        }
+    validate: {
+      isEmail: {
+        args: true,
+        msg: "email Invalido"
       }
-    },
-    inscriptions_id: DataTypes.INTEGER
+    } }
+
   }, {
     sequelize,
     modelName: 'inscriptions',

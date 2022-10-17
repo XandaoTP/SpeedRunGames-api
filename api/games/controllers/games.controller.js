@@ -1,7 +1,8 @@
 const dataBase = require('../../../dbConfig/models')
 const validator = require('validator')
 const emailException = require('../common/exception')
-const ServiceForModel = require('../services/model.service')
+const ServiceForModel = require('../services/getAllGames.service')
+const inscriptions = require('../../../dbConfig/models/inscriptions')
 const modelGames = new ServiceForModel("games")
 
 class GameController {
@@ -118,20 +119,30 @@ class GameController {
         }
       }
       static async createInscription (req, res) {
-        const { inscription_id } = req.params; 
-        const newInscription = { ...req.body, inscriptions_id: Number(inscription_id)}; 
+        const { inscription_id } = req.params;
+        const { email } = req.body; 
+        const newInscription = { ...req.body, inscriptions_id: Number(inscription_id)}
         try {
+            const validateEmail = await dataBase.inscriptions.findOne({
+                where :{
+                    email: email
+                }
+            })
             const VerifyInscript = await dataBase.inscriptions.findOne({
                 where: {
                     inscriptions_id: Number(inscription_id),
                 }
             })
-            if (VerifyInscript) {
-                return res.status(400).send({msgError: 'Inscriço já realizada'})
+            if (validateEmail) { 
+                return res.status(400).send('Já existe esse email cadastrado')
+            } else if (!VerifyInscript) {
+                return res.status(400).send('Não existe o campeonato que deseja inscriçao')
             }
+            res.status(500)
             const creatingInscription = await dataBase.inscriptions.create(newInscription)
             return res.status(200).send({msgSuccess: 'Inscrição realizada.', ...creatingInscription})
         }catch (err) {
+            res.status(500)
 
         }
       }
