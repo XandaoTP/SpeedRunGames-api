@@ -4,6 +4,8 @@ const emailException = require('../common/exception')
 const inscriptions = require('../../../dbConfig/models/inscriptions')
 const ServiceForGames = require('../services/getAllGames.service')
 const getAllGames = new ServiceForGames("games")
+const allN64Games = new ServiceForGames("games") 
+const getById = require("../services/getqualquercoisa") 
 
 class GameController {
     static async getAll(req, res) {
@@ -14,26 +16,19 @@ class GameController {
             return res.status(500).send('erro ao buscar informaçoes')
         }
     }
-    static async getPlataformGame(req, res) {
+    static async getN64Games(req, res) {
         try {
-            const allPlataformGames = await dataBase.games.scope("plataform").findAll()
+            const allPlataformGames = await allN64Games.getN64Plataform()
             return res.status(200).send(allPlataformGames)
         } catch {
             return res.status(500).send('erro ao buscar informaçoes')
         }
     }
     static async selectGame(req, res) {
-        const { gameId } = req.params
+        const gameId  = req.params.name
         try {
-            const game = await dataBase.games.findOne({
-                where: {
-                    id: Number(gameId)
-                }
-            })   
-            if(game === null) {
-                return res.status(404).send('não encontrado.')
-            }
-            return res.status(200).send(game)
+            const game = await getById(gameId)
+                return res.status(200).send(game)
         } catch (error) {
             return res.status(500).send(error.message)
         }

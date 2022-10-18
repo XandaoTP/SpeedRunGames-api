@@ -3,7 +3,7 @@ const route = Router()
 const GameController = require('../controllers/games.controller')
 
 route.get('/games', GameController.getAll)
-route.get('/gamesforplataform', GameController.getPlataformGame)
+route.get('/gamesforplataformn64', GameController.getN64Games)
 route.get('/games/:gameId', GameController.selectGame)
 route.post('/games', GameController.createGame)
 route.put('/edit-game/:gameId', GameController.editGame)
