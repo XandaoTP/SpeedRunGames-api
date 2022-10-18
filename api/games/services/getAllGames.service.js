@@ -1,15 +1,15 @@
 const dataBase = require('../../../dbConfig/models')
 
-class ServiceForModel {
-    constructor(Model) {
-        this.Model = Model
+class ServiceForGames {
+    constructor(getAll) {
+        this.getAll = getAll
     }
 
     async getAllGames() {
-    return dataBase[this.Model].findAll({
+    return dataBase[this.getAll].findAll({
         paranoid: false   
         });
     }
 }
 
-module.exports = ServiceForModel
+module.exports = ServiceForGames

@@ -1,14 +1,14 @@
 const dataBase = require('../../../dbConfig/models')
 const validator = require('validator')
 const emailException = require('../common/exception')
-const ServiceForModel = require('../services/getAllGames.service')
 const inscriptions = require('../../../dbConfig/models/inscriptions')
-const modelGames = new ServiceForModel("games")
+const ServiceForGames = require('../services/getAllGames.service')
+const getAllGames = new ServiceForGames("games")
 
 class GameController {
     static async getAll(req, res) {
         try {
-            const allGames = await modelGames.getAllGames()
+            const allGames = await getAllGames.getAllGames()
             return res.status(200).send(allGames)
         } catch {
             return res.status(500).send('erro ao buscar informaçoes')
