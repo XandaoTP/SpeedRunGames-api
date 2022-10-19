@@ -1,10 +1,11 @@
 const { Router } = require('express')
+const verifyid = require('../../Verify/verifyid')
 const route = Router()
 const GameController = require('../controllers/games.controller')
 
 route.get('/games', GameController.getAll)
 route.get('/gamesforplataformn64', GameController.getN64Games)
-route.get('/games/:gameId', GameController.selectGame)
+route.get('/games/:id', verifyid , GameController.selectGame)
 route.post('/games', GameController.createGame)
 route.put('/edit-game/:gameId', GameController.editGame)
 route.delete('/delete-game/:gameId', GameController.deleteGame)

@@ -6,6 +6,9 @@ const ServiceForGames = require('../services/getAllGames.service')
 const getAllGames = new ServiceForGames("games")
 const allN64Games = new ServiceForGames("games") 
 const getById = require("../services/getqualquercoisa") 
+const gameFind = require('../class/findByid')
+const GameFind = require('../class/findByid')
+const s = new GameFind('games')
 
 class GameController {
     static async getAll(req, res) {
@@ -25,12 +28,13 @@ class GameController {
         }
     }
     static async selectGame(req, res) {
-        const gameId  = req.params.name
+        const  id   = req.params.id;
         try {
-            const game = await getById(gameId)
-                return res.status(200).send(game)
+            const game = await getById(id)
+            const oneGameView = GameFind.oneGame(game)
+                return res.status(200).send(oneGameView)
         } catch (error) {
-            return res.status(500).send(error.message)
+            return res.status(500).send('Erro ao buscar ID.')
         }
     }
 
