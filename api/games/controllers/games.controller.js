@@ -1,14 +1,10 @@
 const dataBase = require('../../../dbConfig/models')
-const validator = require('validator')
 const emailException = require('../common/exception')
-const inscriptions = require('../../../dbConfig/models/inscriptions')
 const ServiceForGames = require('../services/getAllGames.service')
 const getAllGames = new ServiceForGames("games")
 const allN64Games = new ServiceForGames("games") 
-const getById = require("../services/getqualquercoisa") 
-const gameFind = require('../class/findByid')
+const getById = require("../services/getByPk") 
 const GameFind = require('../class/findByid')
-const s = new GameFind('games')
 
 class GameController {
     static async getAll(req, res) {
@@ -34,7 +30,7 @@ class GameController {
             const oneGameView = GameFind.oneGame(game)
                 return res.status(200).send(oneGameView)
         } catch (error) {
-            return res.status(500).send('Erro ao buscar ID.')
+            return res.status(500).send('Erro ao buscar jogo.')
         }
     }
 
