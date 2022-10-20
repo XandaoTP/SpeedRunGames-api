@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken')
 const dataBase = require('../../../dbConfig/models')
-const key = 'xandao123'
+require('dotenv').config();
 
 module.exports = async (req, res, next) => {
-    const token = req.body;
+    const token = req.headers.authorization;
     if (token) {
         try {
-            const payload = jwt.verify(token, key)
+            const payload = jwt.verify(token, process.env.SECRET_JWT_KEY)
             if(payload.email) {
                 next()
             } else {
@@ -18,5 +18,4 @@ module.exports = async (req, res, next) => {
     }else {
         return res.status(401).send('Usuario não autorizado.')
         }
-        next()
     }

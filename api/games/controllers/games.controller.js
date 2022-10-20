@@ -5,6 +5,7 @@ const getAllGames = new ServiceForGames("games")
 const allN64Games = new ServiceForGames("games") 
 const getById = require("../services/getByPk") 
 const GameFind = require('../class/findByid')
+const validator = require("validator")
 
 class GameController {
     static async getAll(req, res) {
@@ -116,7 +117,11 @@ class GameController {
       static async createInscription (req, res) {
         const { inscription_id } = req.params;
         const { email } = req.body; 
+        const isEmail = email ? validator.isEmail(email) : false;
         const newInscription = { ...req.body, inscriptions_id: Number(inscription_id)}
+            if (!isEmail) {
+                return res.status(400).send("Esse email não é valido");
+              }
         try {
             const validateEmail = await dataBase.inscriptions.findOne({
                 where :{

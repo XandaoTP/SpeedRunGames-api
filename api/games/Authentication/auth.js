@@ -17,9 +17,9 @@ module.exports = async (req, res) => {
                 const payload = {
                     email: email,
                 }
-                const token = jwt.sign(payload, key);
+                const token = jwt.sign(payload, process.env.SECRET_JWT_KEY);
                 res.set('Authorization', token)
-                res.status(204).send('Sucesso na autorização.')
+                res.status(204).send(token)
             }
         } else {
             return res.status(400).send('algo deu errado')
