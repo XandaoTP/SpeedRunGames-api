@@ -1,4 +1,4 @@
-const dataBase = require('../../../dbConfig/models');
+const dataBase = require('../../../../dbConfig/models');
 const bcrypt = require("bcrypt");
 const findEmail = require('./findEmail');
 const AllError = require('../../../error/errorentity');

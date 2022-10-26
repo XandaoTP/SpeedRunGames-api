@@ -1,5 +1,4 @@
-const dataBase = require('../../../dbConfig/models')
-const emailException = require('../common/exception')
+const dataBase = require('../../../../dbConfig/models')
 const ServiceForGames = require('../services/getAllGames.service')
 const getAllGames = new ServiceForGames("games")
 const allN64Games = new ServiceForGames("games") 

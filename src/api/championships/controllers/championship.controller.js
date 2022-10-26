@@ -1,9 +1,14 @@
-const dataBase = require('../../../dbConfig/models')
+const dataBase = require('../../../../dbConfig/models')
 
 class ChampionshipsController {
   static async getAllChampionships(req, res) {
     try {
-      const allchampionships = await dataBase.championships.findAll();
+      const allchampionships = await dataBase.inscriptions.findAll({
+        include: [{
+          model: dataBase.championships,
+          
+        }]
+      });
       return res.status(200).send(allchampionships);
     } catch (err) {
       return res.status(500).send('erro ao buscar campeonatos');

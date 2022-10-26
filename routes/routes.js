@@ -1,7 +1,7 @@
-const games = require('../api/games/routes/routes')
-const championships = require('../api/championships/routes/routes')
-const auth = require('../Authentication/auth')
-const userRoute = require('../api/Users/routes/routes')
+const games = require('../src/api/games/routes/routes')
+const championships = require('../src/api/championships/routes/routes')
+const auth = require('../src/Authentication/auth')
+const userRoute = require('../src/api/Users/routes/routes')
 
 module.exports = (app) => {
     app.get('/', (req, res) => {

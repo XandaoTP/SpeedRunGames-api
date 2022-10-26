@@ -1,4 +1,4 @@
-const dataBase = require('../../../dbConfig/models');
+const dataBase = require('../../../../dbConfig/models');
 
 module.exports = async (email) => {
     const adminUser = await dataBase.AdminUsers.findOne({

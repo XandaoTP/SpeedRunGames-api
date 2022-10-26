@@ -1,4 +1,4 @@
-const dataBase = require('../../../dbConfig/models')
+const dataBase = require('../../../../dbConfig/models')
 
 class ServiceForGames {
     constructor(getGames) {
