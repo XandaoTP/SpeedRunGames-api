@@ -7,7 +7,10 @@ class ServiceForGames {
 
     async getAllGames() {
     return dataBase[this.getGames].findAll({
-        paranoid: false   
+        include:{
+            model: dataBase.championships,
+            model: dataBase.inscriptions
+        } 
         });
     }
     async getN64Plataform() {

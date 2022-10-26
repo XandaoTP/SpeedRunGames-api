@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const verifyid = require('../../Verify/verifyid')
-const auth = require('../Authentication/auth')
-const tokenAuth = require('../Authentication/tokenAuth')
+const auth = require('../../../Authentication/auth')
+const tokenAuth = require('../../../Authentication/tokenAuth')
 const route = Router()
 const GameController = require('../controllers/games.controller')
 

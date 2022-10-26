@@ -30,13 +30,13 @@ class GameController {
             const game = await getById(id)
             const oneGameView = GameFind.oneGame(game)
                 return res.status(200).send(oneGameView)
-        } catch (error) {
+        } catch (err) {
             return res.status(500).send('Erro ao buscar jogo.')
         }
     }
 
     static async createGame (req, res) {
-        const { name, plataform } = req.body
+        const { name } = req.body
         const verifyingGame = await dataBase.games.findOne({
             where : {
                 name: name
@@ -119,6 +119,9 @@ class GameController {
         const { email } = req.body; 
         const isEmail = email ? validator.isEmail(email) : false;
         const newInscription = { ...req.body, inscriptions_id: Number(inscription_id)}
+        if(!newInscription.inscriptions_id) {
+            res.status(401).send('É preciso informar um numero relacionado ao campeonato que deseja inscrição')
+        }else {
             if (!isEmail) {
                 return res.status(400).send("Esse email não é valido");
               }
@@ -141,11 +144,12 @@ class GameController {
             res.status(500)
             const creatingInscription = await dataBase.inscriptions.create(newInscription)
             return res.status(200).send({msgSuccess: 'Inscrição realizada.', ...creatingInscription})
-        }catch (err) {
+            }catch (err) {
             res.status(500)
 
         }
       }
+    }
       static async editInscription (req, res) {
         const { user_id, championships_id } = req.params;
         const newInscript = req.body;

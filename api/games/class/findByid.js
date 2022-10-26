@@ -1,17 +1,14 @@
 class GameFind  {
 
-static oneGame ({ id, name, ativo, plataform, inscriptions}) {
+static oneGame ({ id, name, ativo, plataform, inscriptions, championships}) {
     return {
         id,
         name,
         ativo,
         plataform,
-        inscriptions: {
-            id: inscriptions.id,
-            name: inscriptions.name
-        }
+        inscriptions,
+        championships,
         }
     }
 }
-
 module.exports = GameFind

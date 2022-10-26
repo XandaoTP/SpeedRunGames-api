@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
-const db = require('../../../dbConfig/models')
+const db = require('../dbConfig/models')
 require('dotenv').config();
-const key = 'contato@alexandreasilva.com.br'
 
 module.exports = async (req, res) => {
     const { email, senha, name} = req.body;
