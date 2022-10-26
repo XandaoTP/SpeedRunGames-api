@@ -1,20 +1,18 @@
 const dataBase = require('../../../dbConfig/models');
 const bcrypt = require("bcrypt");
-const {error} = require('../../../error/errors');
+const findEmail = require('./findEmail');
+const AllError = require('../../../error/errorentity');
 
-module.exports = async ({ name, email, senha}) => {
+
+module.exports = async ({ res, name, email, senha}) => {
 
         const encryptPass = await bcrypt.hash(senha, 10);
 
-        const isUserExisting = await dataBase.AdminUsers.findOne({
-            where: {
-                email: email
-            }
-        })
-        console.log(isUserExisting)
+        const isUserExisting = await findEmail(email)
+        
 
         if(isUserExisting) {
-            throw new error('User email already exists', 202)
+            throw new AllError('Email já cadastrado.', 202) 
         };
 
         const adminUser = {

@@ -1,11 +1,3 @@
-class BusinessError {
-
-    constructor(message, statusCode) {
-
-        this.statusCode = statusCode;
-
-    }
-
+module.exports = (error, res) => {
+    return res.status(error.statusCode || 500).json(error.message)
 }
-
-module.exports

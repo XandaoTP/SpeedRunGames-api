@@ -1,23 +1,16 @@
-const createUsers = require('../service/user.service')
-const dataBase = require('../../../dbConfig/models')
+const createUsers = require('../service/userservice')
+const errors = require('../../../error/errors')
 
 class UserController {
     
     static async createUser(req, res) {
-        
+        const email = req.body
         try {
-            const isUserExisting = await dataBase.AdminUsers.find({
-                where: {
-                    email: email
-                }
-            })
-            // if(isUserExisting) {
-            //     throw new error('User email already exists', 202)
-            // };
+            const isUserExisting = await createUsers(email)
             return res.status(201).send(isUserExisting);
 
-        } catch (error) {
-            res.status(400).send("errooo");
+        } catch (erro) {
+            errors(erro, res)
         }
     }
 };
